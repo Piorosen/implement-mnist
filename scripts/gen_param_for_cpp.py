@@ -62,3 +62,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     generate_hpp_code_using_template(args.h5_file, args.template_file, args.output)
+
+#%%
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=(7, 7)),
+    tf.keras.layers.Dense(30, activation='relu'),
+    tf.keras.layers.Dense(10)
+    ])
+
+model.summary()
+#%%
