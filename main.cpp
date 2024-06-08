@@ -86,4 +86,6 @@ int main(int argc, char** argv) {
     auto dense2 = dense(dense2_weight, dense2_bias, dense1, false);
     int max_idx = std::max_element(dense2.begin(), dense2.end()) - dense2.begin();
     std::cout << max_idx << "\n";
+    
+    return 0;
 }
