@@ -3,6 +3,8 @@
 #include <iostream>
 #include <algorithm>
 
+#include "template.hpp"
+
 // Function to flatten a 2D array into a 1D array
 template<typename T, size_t N, size_t M>
 std::array<T, N* M> flatten(const std::array<std::array<T, M>, N>& arr2D) {
@@ -62,7 +64,6 @@ int main() {
     int testCase;
     std::cin >> testCase;
 
-#include "template.hpp"
 
     for (int i = 0; i < testCase; i++) {
         std::array<std::array<float, 28>, 28> input;
