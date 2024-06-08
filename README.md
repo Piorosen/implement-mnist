@@ -34,8 +34,12 @@ $ cd implement-mnist && ./scripts/run.sh --all
 
 ```sh
 $ git clone https://github.com/Piorosen/implement-mnist.git
-$ docker build -t piorosen/mnist-shell .
-$ docker run --rm -it piorosen/mnist-shell /bin/ash
+# Follow below code, if you want to without building image.
+$ docker pull ghcr.io/piorosen/implement-mnist:1.0.0
+# following below code, if you want to build by your hand 
+$ docker build -t ghcr.io/piorosen/implement-mnist:1.0.0 .
+
+$ docker run --rm -it ghcr.io/piorosen/implement-mnist:1.0.0 /bin/ash
 $ (container)$ ./mnist # you can see a list of samples in containers.
 $ (container)$ ./mnist file 4-0059.txt # need to select file in list.
 # Output 4
