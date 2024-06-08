@@ -1,7 +1,8 @@
-#include <array>
-#include <vector>
 #include <iostream>
+#include <array>
 #include <algorithm>
+#include <fstream>
+#include <string>
 
 #include "weights.hpp"
 
@@ -60,25 +61,29 @@ std::array<std::array<T, O>, O> resize(const std::array<std::array<T, I>, I>& in
     return output;
 }
 
-int main() {
-    int testCase;
-    std::cin >> testCase;
-
-
-    for (int i = 0; i < testCase; i++) {
-        std::array<std::array<float, 28>, 28> input;
-        
+int main(int argc, char** argv) {
+    std::string data = std::string(argv[1]);
+    std::array<std::array<float, 28>, 28> input;
+    if (data == "file") { 
+        std::string file_path = std::string(argv[2]);
+        std::ifstream fin(file_path);
+        for (int y = 0; y < 28; y++) {
+            for (int x = 0; x < 28; x++) {
+                fin >> input[y][x];
+            }
+        }
+    }else { 
         for (int y = 0; y < 28; y++) {
             for (int x = 0; x < 28; x++) {
                 std::cin >> input[y][x];
             }
         }
-
-        auto sized = resize<float, 28, 7>(input);
-        auto flat = flatten(sized);
-        auto dense1 = dense(dense1_weight, dense1_bias, flat, true);
-        auto dense2 = dense(dense2_weight, dense2_bias, dense1, false);
-        int max_idx = std::max_element(dense2.begin(), dense2.end()) - dense2.begin();
-        std::cout << max_idx << "\n";
     }
+
+    auto sized = resize<float, 28, 7>(input);
+    auto flat = flatten(sized);
+    auto dense1 = dense(dense1_weight, dense1_bias, flat, true);
+    auto dense2 = dense(dense2_weight, dense2_bias, dense1, false);
+    int max_idx = std::max_element(dense2.begin(), dense2.end()) - dense2.begin();
+    std::cout << max_idx << "\n";
 }
