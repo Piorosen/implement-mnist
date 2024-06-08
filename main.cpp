@@ -62,6 +62,8 @@ int main() {
     int testCase;
     std::cin >> testCase;
 
+#include "template.hpp"
+
     for (int i = 0; i < testCase; i++) {
         std::array<std::array<float, 28>, 28> input;
         
@@ -70,17 +72,12 @@ int main() {
                 std::cin >> input[y][x];
             }
         }
-        
-#include "template.hpp"
 
         auto sized = resize<float, 28, 7>(input);
         auto flat = flatten(sized);
         auto dense1 = dense(dense1_weight, dense1_bias, flat, true);
         auto dense2 = dense(dense2_weight, dense2_bias, dense1, false);
         int max_idx = std::max_element(dense2.begin(), dense2.end()) - dense2.begin();
-        std::cout << "MAX : " << max_idx << "\n";
-        for (int i = 0; i < dense2.size(); i++) {
-            std::cout << i << " : " << dense2[i] << '\n';
-        }
+        std::cout << max_idx << "\n";
     }
 }
