@@ -28,6 +28,20 @@ $ git clone https://github.com/Piorosen/implement-mnist.git
 $ cd implement-mnist && ./scripts/run.sh --all
 ```
 
+# How do run it?
+
+#### Docker Build Time: about 40m ~ 60m
+
+```sh
+$ git clone https://github.com/Piorosen/implement-mnist.git
+$ docker build -t piorosen/mnist-shell .
+$ docker run --rm -it piorosen/mnist-shell /bin/ash
+$ (container)$ ./mnist # you can see a list of samples in containers.
+$ (container)$ ./mnist file 4-0059.txt # need to select file in list.
+# Output 4
+$ (container)$ cat ./tests/4-0059.txt # if you want to see data.
+```
+
 # How do work?
 
 The repository is structured to dynamically generate C++ code to respond to changing weight files.
