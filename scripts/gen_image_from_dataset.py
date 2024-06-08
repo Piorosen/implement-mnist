@@ -31,7 +31,7 @@ def save(output: str):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate')
 
-    parser.add_argument("--output", type=str, default='../template.hpp')
+    parser.add_argument("--output", type=str, default='../tests')
     args = parser.parse_args()
 
     save(args.output)
