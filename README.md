@@ -30,6 +30,10 @@ Therefore, we need to first run `./scripts/model_reproducibility.dockerfile`, a 
 
 After that, you can build the `mnist`.
 
+If you are not familiar with `docker`, `Linux`, or `CMakeLists`, you can run `./resources/mnist.cpp`.
+
+The parameter to run is `./mnist file ‘${something file}’`, or you can enter the image directly into the standard input pipeline with `./mnist input`.
+
 ## Output
 
 Description|Image
