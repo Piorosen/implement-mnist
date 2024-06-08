@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--h5_file", type=str, default='./model_weight.h5')
     parser.add_argument("--template_file", type=str, default='./template.hpp')
-    parser.add_argument("--output", type=str, default='../template.hpp')
+    parser.add_argument("--output", type=str, default='../weights.hpp')
     args = parser.parse_args()
 
     generate_hpp_code_using_template(args.h5_file, args.template_file, args.output)

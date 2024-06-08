@@ -2,8 +2,6 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 import argparse
 
-tf.random.set_seed(142)
-
 def normalize_img(image, label):
   """Normalizes images: `uint8` -> `float32`."""
   return tf.cast(image, tf.float32) / 255., label
@@ -63,6 +61,9 @@ if __name__ == "__main__":
 
     parser.add_argument("--save_weight", type=str, default='./model_weight.h5')
     parser.add_argument("--epoch", type=int, default=1000)
+    parser.add_argument("--seed", type=int, default=142)
+
     args = parser.parse_args()
 
+    tf.random.set_seed(args.seed)
     train(args.save_weight, args.epoch)

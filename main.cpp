@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include "template.hpp"
+#include "weights.hpp"
 
 // Function to flatten a 2D array into a 1D array
 template<typename T, size_t N, size_t M>

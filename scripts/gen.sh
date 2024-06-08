@@ -1,14 +1,10 @@
 #!/bin/bash
 
-python3 -m pip install -r requirements.txt
+docker build -t piorosen/mnist-weight -f ./scripts/model_reproducibility.dockerfile ./scripts
+id=$(docker run --rm -it --detach piorosen/mnist-weight)
+echo $id
+docker cp $id:/sources/output/weights.hpp .
+docker cp $id:/sources/tests/ .
+sudo docker kill $id
 
-# train
-python3 ./train_with_save.py --save_weight ./model_weights.h5 --epoch 1000
-
-# deploy to cpp
-python3 ./gen_param_for_cpp.py --h5_file ./model_weights.h5 \
-                                --template_file ./template.hpp \
-                                --output ../template.hpp
-
-# generate dataset for test
-python3 ./gen_image_from_dataset.py --output ../tests --take 100
+docker build -t piorosen/mnist -f ./scripts/mnist.dockerfile .
