@@ -12,10 +12,10 @@ def convert_numpy_to_cpp(weight):
     result = result.strip(' ')
     return result
 
-def save(output: str):
+def save(output: str, take: int):
     train_data = tfds.load('mnist', split='train', as_supervised=True, shuffle_files=False)
     index = 0
-    for image, label in train_data.take(1000):
+    for image, label in train_data.take(take):
         label_np = label.numpy()
         print(label_np)
         image_np = image.numpy().reshape((28,28))
@@ -32,6 +32,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate')
 
     parser.add_argument("--output", type=str, default='../tests')
+    parser.add_argument("--take", type=int, default=1000)
     args = parser.parse_args()
 
-    save(args.output)
+    save(args.output, args.take)

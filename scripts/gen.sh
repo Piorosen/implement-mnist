@@ -11,4 +11,4 @@ python3 ./gen_param_for_cpp.py --h5_file ./model_weights.h5 \
                                 --output ../template.hpp
 
 # generate dataset for test
-python3 ./gen_param_for_cpp.py --output ../tests
+python3 ./gen_image_from_dataset.py --output ../tests --take 100
