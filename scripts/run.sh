@@ -45,7 +45,7 @@ if $all_option; then
 
     for file in "${file_list[@]}"; do
         echo $file
-        docker run --rm -it -v $(pwd)/tests:/tests -t piorosen/mnist /mnist file /tests/$file
+        docker run --rm -it -v $(pwd)/tests:/tests -t piorosen/mnist /mnist file $file
     done
 fi
 

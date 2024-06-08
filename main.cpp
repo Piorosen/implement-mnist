@@ -62,22 +62,27 @@ std::array<std::array<T, O>, O> resize(const std::array<std::array<T, I>, I>& in
 }
 
 int main(int argc, char** argv) {
+    if (argc == 1) { 
+        return system("ls /tests");
+    }
     std::string data = std::string(argv[1]);
     std::array<std::array<float, 28>, 28> input;
     if (data == "file") { 
-        std::string file_path = std::string(argv[2]);
+        std::string file_path = "/tests/" + std::string(argv[2]);
         std::ifstream fin(file_path);
         for (int y = 0; y < 28; y++) {
             for (int x = 0; x < 28; x++) {
                 fin >> input[y][x];
             }
         }
-    }else { 
+    }else if (data == "input") { 
         for (int y = 0; y < 28; y++) {
             for (int x = 0; x < 28; x++) {
                 std::cin >> input[y][x];
             }
         }
+    }else { 
+        return system("ls /tests");
     }
 
     auto sized = resize<float, 28, 7>(input);

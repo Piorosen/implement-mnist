@@ -4,18 +4,17 @@ RUN apt update && \
     apt install -y clang-17 git cmake ninja-build \
     curl zip unzip tar build-essential pkg-config && \
     rm -rf /var/lib/apt/lists/*
-    
 COPY CMakeLists.txt CMakeLists.txt
 COPY main.cpp .
 COPY weights.hpp .
-
 ENV CXX clang++-17
 ENV CC clang-17
-
 RUN mkdir build && \ 
     cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DSTATIC=ON \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+    -DSTATIC=ON \
+    -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_C_COMPILER=${CC} \
     -DCMAKE_CXX_COMPILER=${CXX} \
     -G Ninja .. && \
